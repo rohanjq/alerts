@@ -1,0 +1,88 @@
+{
+  "schema": "alerts.definitions.v1",
+  "definitions": [
+    {
+      "name": "Test: candle flips after 50%",
+      "enabled": true,
+      "series": {
+        "dataset": "live",
+        "symbol": "BTCUSDT",
+        "timeframe": "1m"
+      },
+      "rule": {
+        "type": "candle_color_flip",
+        "direction": "either",
+        "min_elapsed_percent": 50
+      },
+      "evaluation_mode": "intrabar",
+      "trigger_mode": "once_per_bar",
+      "cooldown_seconds": 0
+    },
+    {
+      "name": "Test: green candle",
+      "enabled": true,
+      "series": {
+        "dataset": "live",
+        "symbol": "BTCUSDT",
+        "timeframe": "1m"
+      },
+      "rule": {
+        "type": "candle_color",
+        "direction": "green"
+      },
+      "evaluation_mode": "confirmed_close",
+      "trigger_mode": "once_per_bar",
+      "cooldown_seconds": 0
+    },
+    {
+      "name": "Test: red candle",
+      "enabled": true,
+      "series": {
+        "dataset": "live",
+        "symbol": "BTCUSDT",
+        "timeframe": "1m"
+      },
+      "rule": {
+        "type": "candle_color",
+        "direction": "red"
+      },
+      "evaluation_mode": "confirmed_close",
+      "trigger_mode": "once_per_bar",
+      "cooldown_seconds": 0
+    },
+    {
+      "name": "Test: two consecutive green candles",
+      "enabled": true,
+      "series": {
+        "dataset": "live",
+        "symbol": "BTCUSDT",
+        "timeframe": "1m"
+      },
+      "rule": {
+        "type": "candle_streak",
+        "direction": "green",
+        "count": 2
+      },
+      "evaluation_mode": "confirmed_close",
+      "trigger_mode": "on_occurrence",
+      "cooldown_seconds": 0
+    },
+    {
+      "name": "Test: two consecutive red candles",
+      "enabled": true,
+      "series": {
+        "dataset": "live",
+        "symbol": "BTCUSDT",
+        "timeframe": "1m"
+      },
+      "rule": {
+        "type": "candle_streak",
+        "direction": "red",
+        "count": 2
+      },
+      "evaluation_mode": "confirmed_close",
+      "trigger_mode": "on_occurrence",
+      "cooldown_seconds": 0
+    }
+  ]
+}

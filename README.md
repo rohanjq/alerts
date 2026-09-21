@@ -55,6 +55,23 @@ curl -sS -X POST http://127.0.0.1:8100/v1/definitions \
   -d '{"name":"Three red 15m candles","series":{"symbol":"BTCUSDT","timeframe":"15m"},"rule":{"type":"candle_streak","direction":"red","count":3},"evaluation_mode":"confirmed_close","trigger_mode":"on_occurrence","cooldown_seconds":900}'
 ```
 
+Definitions can also be kept in a portable, version-controlled JSON manifest.
+Load the checked-in seed with:
+
+```bash
+go run ./cmd/alertdefs import -file definitions/seed.json
+```
+
+Export the service's current definitions with:
+
+```bash
+go run ./cmd/alertdefs export -out definitions/seed.json
+```
+
+Both commands read `ALERTS_API_URL` and `ALERTS_API_TOKEN`. See
+[`docs/definitions.md`](docs/definitions.md) for the format, authentication, and
+portability guarantees.
+
 Post observations using [`docs/observations.md`](docs/observations.md). The
 third matching observation produces an alert event and the first publisher
 adapter logs `alert event published`. Reposting a `source_event_id` is a no-op.
